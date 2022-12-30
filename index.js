@@ -10,10 +10,19 @@ app.listen(PORT, () => {
   console.log(`Server started on PORT ${PORT}..`)
 });
 
-app.use(express.static(path.resolve(__dirname, 'static')));
+// app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(requestTime);
 app.use(logger);
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.set('views', path.resolve(__dirname, 'ejs'));
+
+app.get('/', (req, res) => {
+  res.render('index', {title: 'Persha storinka'});
+});
+
+app.get('/features', (req, res) => {
+  res.render('features', {title: 'Druga storinka'});
+});
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
