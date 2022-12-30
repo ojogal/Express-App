@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import {requestTime, logger} from './middleware'
 
 const __dirname = path.resolve();
 const app = express();
@@ -9,7 +10,8 @@ app.listen(PORT, () => {
   console.log(`Server started on PORT ${PORT}..`)
 });
 
-app.use(express.static(path.resolve(__dirname, 'static')))
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(requestTime);
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
