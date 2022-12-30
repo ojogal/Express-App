@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'path'
 import {requestTime, logger} from './middleware.js'
+import serverRoutes from './routes/servers.js'
 
 const __dirname = path.resolve();
 const app = express();
@@ -15,6 +16,7 @@ app.use(requestTime);
 app.use(logger);
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'ejs'));
+app.use(serverRoutes);
 
 app.get('/', (req, res) => {
   res.render('index', {title: 'Persha storinka', active: 'main'});
