@@ -13,6 +13,7 @@ app.listen(PORT, () => {
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(requestTime);
 app.use(logger);
+app.set('view engine', 'ejs')
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'static', 'index.html'));
@@ -22,7 +23,7 @@ app.use(logger);
 //   res.sendFile(path.resolve(__dirname, 'static', 'features.html'));
 // })
 
-app.get('/download', (req, res) => {
-  console.log(req,requestTime)
-  res.download(path.resolve(__dirname, 'static', 'index.html'));
-})
+// app.get('/download', (req, res) => {
+//   console.log(req,requestTime)
+//   res.download(path.resolve(__dirname, 'static', 'index.html'));
+// })
