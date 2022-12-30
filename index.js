@@ -17,11 +17,11 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'ejs'));
 
 app.get('/', (req, res) => {
-  res.render('index', {title: 'Persha storinka'});
+  res.render('index', {title: 'Persha storinka', active: 'main'});
 });
 
 app.get('/features', (req, res) => {
-  res.render('features', {title: 'Druga storinka'});
+  res.render('features', {title: 'Druga storinka', active: 'features'});
 });
 
 // app.get('/', (req, res) => {
