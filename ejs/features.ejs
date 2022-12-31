@@ -6,12 +6,16 @@
 <body>
   <%- include('./partials/navbar'); %>
   <div class="container">
+    <div id="app">
+      <div class="spinner-border" role="status" v-if="servers.length === 0">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <ul class="list-group" v-else>
+        <li class="list-group-item" v-for="server in servers">{{server.name}}</li>
+      </ul>
+    </div>
     <h1>This is features page beatch</h1>
     <a href="/">Back</a>
-  </div>
-
-  <div id="app">
-
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
