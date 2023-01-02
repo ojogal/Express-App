@@ -1,6 +1,8 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import userRoutes from './routes/users.js';
+import mongoose from 'mongoose';
+// import bodyParser from 'body-parser';
+// import userRoutes from './routes/users.js';
+import authRouter from './routes/authRouter.js';
 // import path from 'path'
 // import {requestTime, logger} from './middleware.js'
 // import serverRoutes from './routes/servers.js'
@@ -8,13 +10,24 @@ import userRoutes from './routes/users.js';
 // const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT ?? 4001;
+const URL = 'mongodb+srv://ojogal:nD4piUNPLfZRftM@cluster0.pzjgw9z.mongodb.net/?retryWrites=true&w=majority';
 
-app.use(bodyParser.json());
-app.use('/users', userRoutes);
+app.use(express.json());
+// app.use('/users', userRoutes);
+app.use('/auth', authRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server started on PORT http://localhost:${PORT}..`)
-});
+const start = async () => {
+  try {
+      await mongoose.connect(URL);
+      app.listen(PORT, () => {
+        console.log(`Server started on PORT http://localhost:${PORT}..`)
+      });
+  } catch (e) {
+      console.log();
+  }
+};
+
+start();
 
 // app.use(express.static(path.resolve(__dirname, 'static')));
 // app.use(requestTime);
