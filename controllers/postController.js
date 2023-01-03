@@ -1,10 +1,9 @@
-import { body } from 'express-validator';
-import Post from '../models/Post.js';
+import PostService from '../services/postService.js';
 
 class PostController {
   async index(req, res) {
     try {
-      const posts = await Post.find();
+      const posts = await PostService.index();
       return res.json(posts)
     } catch (e) {
       console.log(e);
@@ -14,13 +13,7 @@ class PostController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-
-      if (!id) {
-        res.status(400).json({ message: 'No data' })
-      };
-
-      const post = await Post.findById(id);
+      const post = await PostService.show(req.params.id);
       return res.json(post)
     } catch (e) {
       console.log(e);
@@ -30,8 +23,7 @@ class PostController {
 
   async create(req, res) {
     try {
-      const { author, title, content, picture } = req.body;
-      const post = await Post.create({ author, title, content, picture });
+      const post = await PostService.create(req.body)
       res.json(post)
     } catch (e) {
       console.log(e);
@@ -41,13 +33,7 @@ class PostController {
 
   async update(req, res) {
     try {
-      const post = req.body;
-
-      if (!body._id) {
-        res.status(400).json({ message: 'No data' })
-      };
-
-      const updatedPost = await Post.findByIdAndUpdate(post._id, post, { new: true });
+      const updatedPost = await PostService.update(req.body);
       return res.json(updatedPost)
     } catch (e) {
       console.log(e);
@@ -57,13 +43,7 @@ class PostController {
 
   async destroy(req, res) {
     try {
-      const { id } = req.body;
-
-      if (!id) {
-        res.status(400).json({ message: 'No data' })
-      };
-
-      const post = await Post.findByIdAndDelete(id);
+      const post = await PostService.destroy(req.params.id);
       return res.json(post)
     } catch (e) {
       console.log(e);

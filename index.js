@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import Post from './models/Post.js';
 // import bodyParser from 'body-parser';
 import userRoutes from './routes/users.js';
 import authRouter from './routes/authRouter.js';
