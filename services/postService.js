@@ -1,4 +1,5 @@
 import Post from '../models/Post.js';
+import FileService from './fileService.js';
 
 class PostService {
   async index() {
@@ -15,8 +16,9 @@ class PostService {
     return post
   };
 
-  async create(post) {
-    const createdPost = await Post.create(post);
+  async create(post, picture) {
+    const fileName = FileService.saveFile(picture);
+    const createdPost = await Post.create({ ...post, picture: fileName });
     return createdPost
   };
 

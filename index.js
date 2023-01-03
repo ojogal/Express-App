@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/users.js';
 import authRouter from './routes/authRouter.js';
 import postRouter from './routes/posts.js';
+import fileUpload from 'express-fileupload';
 // import path from 'path'
 // import {requestTime, logger} from './middleware.js'
 // import serverRoutes from './routes/servers.js'
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/users', userRoutes);
 app.use('/auth', authRouter);
 app.use('/api', postRouter);
+app.use(fileUpload({}));
 
 const start = async () => {
   try {
