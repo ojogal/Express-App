@@ -12,7 +12,6 @@ import fileUpload from 'express-fileupload';
 // const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT ?? 4001;
-const DB_URL = 'mongodb+srv://ojogal:nD4piUNPLfZRftM@cluster0.pzjgw9z.mongodb.net/?retryWrites=true&w=majority';
 
 app.use(express.json());
 app.use('/users', userRoutes);
